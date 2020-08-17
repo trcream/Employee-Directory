@@ -1,16 +1,23 @@
 import React from "react";
 import {Form,Button} from "react-bootstrap"
 
-function SearchForm(){
+function SearchForm(props){
     return (
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Search by Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" />
- 
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            onChange={(e) => props.updateSearch(e.target.value)}
+          />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={e => e.preventDefault()}>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={(e) => e.preventDefault()}
+        >
           Search
         </Button>
       </Form>
