@@ -5,43 +5,52 @@ import SearchForm from "../components/SearchForm";
 import {Container, Card} from "react-bootstrap"
 
 class Directory extends React.Component {
-   
-    state = {
-        name: "",
-        role: "",
-        manager: "",
-        users: [],
-        Search:""
-    }
-    updateSearch = (search) =>{
-      console.log(search)
-        this.setState({search})
+  state = {
+    name: "",
+    role: "",
+    manager: "",
+    users: [],
+    search: "",
+    searchType: "",
+    sort: "",
+  };
+  updateSearch = (search) => {
+    console.log(search);
+    this.setState({ search });
+  };
 
-    }
+  // updateSearchType = (searchType)=>{
+  //   this.setState({searchType})
+  // }
 
-    componentDidMount(){
-        API
-            .getUsers()
-            .then(res => {
-                console.log(res.data.results[0]);
-                this.setState({users: res.data.results})
-            });
-    }
+  updateSort = (sort) => {
+    this.setState({ sort });
+  };
 
-    render(){
+  componentDidMount() {
+    API.getUsers().then((res) => {
+      console.log(res.data.results[0]);
+      this.setState({ users: res.data.results });
+    });
+  }
 
+  render() {
     return (
       <div>
         <Container>
           <Card>
             <SearchForm updateSearch={this.updateSearch} />
           </Card>
-          <UserTable users={this.state.users} search={this.state.search}/>
+          <UserTable
+            users={this.state.users}
+            search={this.state.search}
+            sort={this.state.sort}
+            updateSort={this.updateSort}
+          />
         </Container>
       </div>
     );
-    }
-    
+  }
 }
 
 export default Directory

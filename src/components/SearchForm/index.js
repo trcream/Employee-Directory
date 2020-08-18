@@ -3,7 +3,7 @@ import {Form,Button} from "react-bootstrap"
 
 function SearchForm(props){
     return (
-      <Form>
+      <Form onSubmit={(e) => e.preventDefault()}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Search by Name</Form.Label>
           <Form.Control
@@ -13,13 +13,6 @@ function SearchForm(props){
           />
         </Form.Group>
 
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={(e) => e.preventDefault()}
-        >
-          Search
-        </Button>
       </Form>
     );
 
